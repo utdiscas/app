@@ -19,9 +19,14 @@ public class DataLoader {
         repository.save(new Swiezak("Biedak"));
         repository.save(new Swiezak("Zwierzak"));
         repository.save(new Swiezak("Przystojniak"));
-        repository.save(new Swiezak("Swiezak"));
+        repository.save(new Swiezak("Świeżak"));
         repository.save(new Swiezak("Troll"));
         repository.save(new Swiezak("Duza"));
         repository.save(new Swiezak("Quej"));
+        repository.save(new Swiezak("Cwaniak"));
+        repository.save(new Swiezak("Chlebak"));
+        repository.save(new Swiezak("Rybak"));
+        repository.save(new Swiezak("Stajniak"));
+        repository.save(new Swiezak("Zderzak"));
     }
 }
