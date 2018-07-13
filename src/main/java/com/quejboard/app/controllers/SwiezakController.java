@@ -5,8 +5,7 @@ import com.quejboard.app.repository.SwiezakRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @RequestMapping("api/swiezaks")
@@ -14,7 +13,6 @@ public class SwiezakController {
 
     @Autowired
     SwiezakRepository repository;
-
 
     @GetMapping
     public List<Swiezak> find() {
@@ -26,6 +24,23 @@ public class SwiezakController {
     @GetMapping("/{id}")
     public Swiezak get(@PathVariable("id") int id) {
         return repository.findById(id);
+    }
+
+
+    public void schedulingDailySwiezakLottery() {
+        //final String swiezak;
+        TimerTask repeatedTask = new TimerTask() {
+            public void run() {
+                String swiezak = getRandomSwiezak();
+                // System.out.println("Task performed on " + new Date());
+            }
+        };
+
+        Timer timer = new Timer("Timer");
+//TODO: change for daily interval
+        long delay = 1000L; //1000L;
+        long period = 1000L * 15L; // 1000L * 60L * 60L * 24L;
+        timer.scheduleAtFixedRate(repeatedTask, delay, period);
     }
 
     @GetMapping("/random")
