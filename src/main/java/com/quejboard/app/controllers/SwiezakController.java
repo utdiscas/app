@@ -3,6 +3,7 @@ package com.quejboard.app.controllers;
 import com.quejboard.app.model.Swiezak;
 import com.quejboard.app.repository.SwiezakRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -26,24 +27,9 @@ public class SwiezakController {
         return repository.findById(id);
     }
 
+    @GetMapping("/randoms") //4seks
+    @Scheduled(fixedRate = 4000)
 
-    public void schedulingDailySwiezakLottery() {
-        //final String swiezak;
-        TimerTask repeatedTask = new TimerTask() {
-            public void run() {
-                String swiezak = getRandomSwiezak();
-                // System.out.println("Task performed on " + new Date());
-            }
-        };
-
-        Timer timer = new Timer("Timer");
-//TODO: change for daily interval
-        long delay = 1000L; //1000L;
-        long period = 1000L * 15L; // 1000L * 60L * 60L * 24L;
-        timer.scheduleAtFixedRate(repeatedTask, delay, period);
-    }
-
-    @GetMapping("/random")
     public String getRandomSwiezak() {
         List<Swiezak> swiezaks = repository.findByNameLastLetters("ak");
         Random r = new Random();
